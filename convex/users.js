@@ -1,4 +1,4 @@
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 
 export const store = mutation({
   args: {},
@@ -32,5 +32,26 @@ export const store = mutation({
       tokenIdentifier: identity.tokenIdentifier,
       email: identity.email ?? "",
     });
+  },
+});
+
+export const getCurrentUser = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    // Check if we've already stored this identity before.
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) =>
+        q.eq("tokenIdentifier", identity.tokenIdentifier),
+      )
+      .first();
+    if (user === null) {
+      throw new Error("User not found");
+    }
+    return user;
   },
 });
