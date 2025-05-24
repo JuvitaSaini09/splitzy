@@ -30,7 +30,8 @@ export const store = mutation({
     return await ctx.db.insert("users", {
       name: identity.name ?? "Anonymous",
       tokenIdentifier: identity.tokenIdentifier,
-      email: identity.email ?? "",
+      email: identity.email,
+      imageUrl: identity.pictureUrl,
     });
   },
 });
