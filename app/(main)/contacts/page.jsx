@@ -8,8 +8,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { BarLoader } from "react-spinners";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import CreateGroupModal from "./components/create-group-modal";
 import { useRouter } from "next/navigation";
+import { CreateGroupModal } from "./components/create-group-modal";
 
 const ContactsPage = () => {
   //states
