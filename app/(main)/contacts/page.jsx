@@ -5,10 +5,10 @@ import { api } from "@/convex/_generated/api";
 import { useConvexQuery } from "@/hooks/use-convex-query";
 import { Plus, Users, User } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BarLoader } from "react-spinners";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { CreateGroupModal } from "./components/create-group-modal";
 
 const ContactsPage = () => {
@@ -19,26 +19,18 @@ const ContactsPage = () => {
   const { data, isLoading, error } = useConvexQuery(
     api.contacts.getAllContacts,
   );
-  /*
-data=[
-  groups : [{
-    0: 
-    description: "Expenses for our project",
-    id: "jn77paha0zx9hh2fc5p68v3kr97gf1jb",
-    memberCount: 3,
-    name: "Project Alpha",
-    type: "group"
-  },....],
-  users:[{
-  email: "1amit24saini5@gmail.com",
-  id: "j57dj2tp32zsbcsqjgahs46c0h7gftjn",
-  name: "Anonymous",
-  type: "user"
-},...]
-]
 
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const createGroup = searchParams.get("createGroup");
+    if (createGroup) {
+      setIsCreateGroupModalOpen(true);
+      const url = new URL(window.location.href);
+      url.searchParams.delete("createGroup");
 
-  */
+      router.replace(url.pathname + url.search);
+    }
+  }, [searchParams, router]);
 
   if (isLoading) {
     return (

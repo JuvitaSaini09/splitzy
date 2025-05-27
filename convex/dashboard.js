@@ -60,7 +60,8 @@ export const getUserBalances = query({
     const youOweList = [];
     const youAreOwedByList = [];
     for (const [uid, { owed, owing }] of Object.entries(balanceByUser)) {
-      const net = owed - owing;
+      const net = owed - owing; //owed= you will receive, owing= you will pay (receive - pay)
+      // -ve means dena ( owing ) ha paisa and +ve means lena (owed) ha paisa
       if (net === 0) continue;
       const counterpart = await ctx.db.get(uid);
       const base = {
