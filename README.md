@@ -31,3 +31,8 @@ Splitzy is a smart and modern expense management tool inspired by [RoadsideCoder
 ## 📸 UI Preview
 
 
+![Screenshot 2025-06-02 230405](https://github.com/user-attachments/assets/69be68c8-c253-4524-a65e-9744cf787402)
+
+
+https://github.com/user-attachments/assets/afb98046-4ab3-4765-b3ec-40afa785a90c
+
