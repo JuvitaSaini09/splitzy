@@ -1,7 +1,38 @@
+"use client";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const NewExpensePage = () => {
-  return <div>NewExpensePage</div>;
+  const router = useRouter();
+
+  return (
+    <div className="container max-w-3xl mx-auto py-6">
+      <div className="mb-6">
+        <h1 className="text-5xl gradient-title">Add a new expense</h1>
+        <p className="text-muted-foreground mt-1">
+          Record a new expense to split with others
+        </p>
+      </div>
+      <Card>
+        <CardContent>
+          <Tabs deafultValue="individual" className="pb-3">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="individual">Individual Expense</TabsTrigger>
+              <TabsTrigger value="group">Group Expense</TabsTrigger>
+            </TabsList>
+            <TabsContent value="individual" className="mt-0">
+              Indvidual Expense
+            </TabsContent>
+            <TabsContent value="group" className="mt-0">
+              Group Expense
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
+    </div>
+  );
 };
 
 export default NewExpensePage;
