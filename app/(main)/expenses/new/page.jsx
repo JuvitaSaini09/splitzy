@@ -17,7 +17,7 @@ const NewExpensePage = () => {
       </div>
       <Card>
         <CardContent>
-          <Tabs deafultValue="individual" className="pb-3">
+          <Tabs defaultValue="individual" className="pb-3">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="individual">Individual Expense</TabsTrigger>
               <TabsTrigger value="group">Group Expense</TabsTrigger>
